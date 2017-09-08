@@ -9,13 +9,24 @@
 </head>
 <body>
   <div class="container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <ul class="nav nav-tabs">
       <li><%= link_to "Blocipedia", welcome_index_path %></li>
+      <li>&nbsp </li>
       <li><%= link_to "About", welcome_about_path %></li>
+      <li>&nbsp </li>
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
+        </li>
+      <% else %>
+        <li>
+          <%= link_to('Login', new_user_session_path)  %>  
+        </li>
+      <% end %>
     </ul>
+    <%= yield %>
   </div>
-
-<%= yield %>
-
 </body>
 </html>
