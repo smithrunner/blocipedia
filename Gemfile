@@ -30,3 +30,5 @@
    gem 'factory_girl_rails'
    gem 'pry-rails'
  end
+
+gem 'bootstrap-sass'
