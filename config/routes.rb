@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   
   root 'welcome#index'
 
-  resources :wikis, only: [:new, :edit, :create, :show, :destroy]
+  resources :wikis
 end
