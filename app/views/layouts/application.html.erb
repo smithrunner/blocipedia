@@ -3,30 +3,42 @@
 <head>
   <title>Blocipedia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="container">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <ul class="nav nav-tabs">
-      <li><%= link_to "Blocipedia", welcome_index_path %></li>
-      <li>&nbsp </li>
-      <li><%= link_to "Wikis", wikis_path %></li>
-      <li>&nbsp </li>
-     
-    </ul>
-
-  <div class="col-4">
-    <% if user_signed_in? %>
-      <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
-    <% else %>
-      <%= link_to('Login', new_user_session_path)  %>  
-      <% end %>
+  <div class="jumbotron">
+    <div class="container text-center">
+      <h1>Blocipedia</h1>
+    </div>
   </div>
+  
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><%= link_to "Blocipedia", welcome_index_path %></li>
+          <li><%= link_to "Wikis", wikis_path %></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+          <% if user_signed_in? %>
+            <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+          <% else %>
+            <li><%= link_to('Login', new_user_session_path)  %></li>  
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="container">
     <%= yield %>
   </div>
+
 </body>
 </html>
