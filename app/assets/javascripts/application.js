@@ -15,6 +15,3 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
-// Add following lines.
-//= reuire jquery
-//= reuire jquery_ujs

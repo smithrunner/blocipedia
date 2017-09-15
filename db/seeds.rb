@@ -3,7 +3,6 @@ require 'faker'
 # Create Users
 10.times do
     User.create!(
-        name:     Faker::Name.name,
         email:    Faker::Internet.email,
         password: Faker::Address.city
     )
