@@ -38,3 +38,5 @@ gem 'devise'
 gem 'pundit'
 
 gem 'faker'
+
+gem 'stripe'
