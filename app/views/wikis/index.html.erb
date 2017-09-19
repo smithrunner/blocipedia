@@ -3,7 +3,9 @@
   <div class="row">
     <div class="col-md-12">
       <% @wikis.each do |wiki| %>
-        <h3><%= link_to wiki.title, wiki_path(wiki.id) %></h3><br><br>
+        <% if wiki.private == false %>
+          <h3><%= link_to wiki.title, wiki_path(wiki.id) %></h3><br><br>
+        <% end %>
       <% end %>
       <h3><%= link_to "New Wiki", new_wiki_path(@wiki), class: 'btn btn-success' %></h3>
     </div>

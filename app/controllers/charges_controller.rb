@@ -13,7 +13,8 @@ class ChargesController < ApplicationController
     )
  
     flash[:notice] = "Upgrade successful! #{current_user.email} is now a premium member!"
-    current_user.role ||= :premium
+    @user = current_user
+    @user.role ||= :premium
     redirect_to user_path(current_user)
  
     rescue Stripe::CardError => e
