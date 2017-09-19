@@ -28,7 +28,7 @@
         <% @user.wikis.each do |wiki| %>
           <h4><%= link_to wiki.title, wiki_path(wiki.id) %></h4>
         <% end %>
-        <h4><%= link_to "New Public Wiki", new_wiki_path(@wiki), class: 'btn btn-success' %></h4>
+        <h4><%= link_to "New Private Wiki", new_wiki_path(@wiki), class: 'btn btn-success' %></h4>
       <% end %>
     </div>
   </div>

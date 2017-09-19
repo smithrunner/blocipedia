@@ -7,12 +7,13 @@ class ChargesController < ApplicationController
 
     charge = Stripe::Charge.create(
       customer: customer.id,
-      amount: Amount.default,
+      amount: 15_00,
       description: "Premium Membership - #{current_user.email}",
       currency: 'usd'
     )
  
     flash[:notice] = "Upgrade successful! #{current_user.email} is now a premium member!"
+    current_user.role ||= :premium
     redirect_to user_path(current_user)
  
     rescue Stripe::CardError => e

@@ -7,6 +7,11 @@ require 'faker'
         password: Faker::Address.city
     )
 end
+User.create!(
+    email: 'prem@prem.com',
+    password: 'passowrd',
+    role: 'premium'
+)
 users = User.all
 
 50.times do
