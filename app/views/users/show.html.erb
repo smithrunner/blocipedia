@@ -9,7 +9,7 @@
         <h4><%= link_to "Upgrade", new_charge_path, class: 'btn btn-success' %></h4>
       <% elsif @user.role == 'premium' %>
         <h4>Subscription Level: Premium</h4>
-        <h4><%= link_to "Downgrade", user_path, class: 'btn btn-danger' %></h4>
+        <h4><%= link_to "Downgrade", new_charge_path, class: 'btn btn-danger' %></h4>
       <% else %>
         <h4>Subscription Level: ADMIN</h4>
       <% end %><br>

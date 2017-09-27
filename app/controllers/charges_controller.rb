@@ -4,6 +4,7 @@ class ChargesController < ApplicationController
       email: current_user.email,
       card: params[:stripeToken]
     )
+    
 
     charge = Stripe::Charge.create(
       customer: customer.id,
@@ -13,8 +14,9 @@ class ChargesController < ApplicationController
     )
  
     flash[:notice] = "Upgrade successful! #{current_user.email} is now a premium member!"
-    @user = current_user
-    @user.role ||= :premium
+    current_user.role = 'premium'
+    current_user.save!
+    
     redirect_to user_path(current_user)
  
     rescue Stripe::CardError => e
@@ -29,4 +31,27 @@ class ChargesController < ApplicationController
       amount: 15_00
     }
   end
+  
+  def destroy
+    customer = Stripe::Customer.retrieve(current_user.stripe_id)
+    if customer.delete
+      flash[:notice] = "\"#{current_user.email}\" was downgraded to standard successfully."
+      current_user.role = 'user'
+      current_user.save!
+      
+      wikis = current_user.wikis
+      wikis.each do |wiki|
+        if wiki.private
+          wiki.private = false
+          wiki.save!
+        end
+      end
+
+      redirect_to new_charge_path
+    else
+      flash.now[:alert] = "There was an error downgrading the user."
+      redirect_to new_charge_path
+    end
+  end
+
 end

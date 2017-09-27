@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     delete "sign_out", :to => "devise/sessions#destroy"
   end
   
-  resources :charges, only: [:new, :create]
+  resources :charges, only: [:create, :new, :destroy]
   resources :users, only: [:show]
     
   get 'welcome/index'

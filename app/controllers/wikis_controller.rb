@@ -1,7 +1,7 @@
 class WikisController < ApplicationController
   before_action :authenticate_user!
   def index
-    @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
   end
 
   def show
@@ -30,6 +30,7 @@ class WikisController < ApplicationController
   
   def edit
     @wiki = Wiki.find(params[:id])
+    @all_collaborators = User.all
   end
   
   def update
