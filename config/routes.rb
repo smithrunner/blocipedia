@@ -14,5 +14,7 @@ Rails.application.routes.draw do
   
   root 'welcome#index'
 
-  resources :wikis
+  resources :wikis do
+    resources :collaborators, only: [:create, :new, :destroy]
+  end
 end

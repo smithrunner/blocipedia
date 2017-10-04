@@ -9,8 +9,8 @@ require 'faker'
 end
 User.create!(
     email: 'prem@prem.com',
-    password: 'passowrd',
-    role: 'premium'
+    password: 'password',
+    role: 'premium',
 )
 users = User.all
 

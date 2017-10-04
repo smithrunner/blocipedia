@@ -1,8 +1,8 @@
 <% if current_user.premium? || current_user.admin? %>
-  <%= form_for [@wiki] do |f| %>
-  <div class="form-group">
-    <%= f.select(:user_id, @all_collaborators.collect{|w| [w.email, w.id] }) %>
-    <%= f.submit "Add collaborator", class: 'btn btn-primary' %>
-  </div>
+  <h3>Add Collaborators</h3>
+
+  <%= form_for [wiki, Collaborator.new] do |c| %>
+    <%= email_field_tag :collaborator %>
+    <%= c.submit "Add collaborator", class: 'btn btn-primary' %>
   <% end %>
 <% end %>

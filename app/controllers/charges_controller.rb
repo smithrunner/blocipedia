@@ -12,6 +12,8 @@ class ChargesController < ApplicationController
       description: "Premium Membership - #{current_user.email}",
       currency: 'usd'
     )
+    
+    current_user.stripe_id = customer.id
  
     flash[:notice] = "Upgrade successful! #{current_user.email} is now a premium member!"
     current_user.role = 'premium'
